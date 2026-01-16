@@ -9,12 +9,12 @@ const BREAK_TIMES = [5, 10, 15, 30];
 // Uses logarithmic scaling to prevent oversized balls for long durations
 const getRadius = (minutes) => {
 	const isMobile = window.innerWidth < 768;
-	const baseRadius = isMobile ? 15 : 22;
+	const baseRadius = isMobile ? 12 : 22;
 	// Use square root scaling to keep large times manageable
-	const scaleFactor = isMobile ? 2.5 : 4;
+	const scaleFactor = isMobile ? 2 : 4;
 	const scaledSize = Math.sqrt(minutes) * scaleFactor;
-	// Max radius: 45px mobile, 65px desktop
-	const maxRadius = isMobile ? 45 : 65;
+	// Max radius: 38px mobile (17% smaller), 65px desktop
+	const maxRadius = isMobile ? 38 : 65;
 	return Math.min(baseRadius + scaledSize, maxRadius);
 };
 
