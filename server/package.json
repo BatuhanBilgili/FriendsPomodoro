@@ -1,0 +1,17 @@
+{
+  "name": "focus-timer-server",
+  "version": "1.0.0",
+  "description": "Realtime study-together backend with Socket.io",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2",
+    "uuid": "^9.0.0",
+    "cors": "^2.8.5"
+  }
+}
