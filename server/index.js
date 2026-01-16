@@ -3,16 +3,28 @@ import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 import roomManager from './roomManager.js';
 import timerEngine from './timerEngine.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 const server = createServer(app);
 
-// Configure CORS for development
+// Production URL
+const PRODUCTION_URL = 'https://friendspomodoro.onrender.com';
+
+// Configure CORS for development and production
 const io = new Server(server, {
 	cors: {
-		origin: ['http://localhost:5173', 'http://localhost:3000'],
+		origin: [
+			'http://localhost:5173',
+			'http://localhost:3000',
+			PRODUCTION_URL
+		],
 		methods: ['GET', 'POST'],
 		credentials: true
 	}
@@ -21,9 +33,22 @@ const io = new Server(server, {
 app.use(cors());
 app.use(express.json());
 
+// Serve static files from React build
+const clientBuildPath = join(__dirname, '..', 'client', 'dist');
+app.use(express.static(clientBuildPath));
+
 // Health check endpoint
 app.get('/health', (req, res) => {
 	res.json({ status: 'ok', rooms: roomManager.getAllRoomIds().length });
+});
+
+// Serve React app for all other routes (SPA support)
+app.get('*', (req, res, next) => {
+	// Skip socket.io requests
+	if (req.url.startsWith('/socket.io')) {
+		return next();
+	}
+	res.sendFile(join(clientBuildPath, 'index.html'));
 });
 
 // Initialize timer engine with Socket.io
