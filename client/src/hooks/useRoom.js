@@ -51,7 +51,14 @@ export const useRoom = (roomId) => {
 		});
 
 		socket.on('timer-complete', () => {
-			// Timer completed - state is already updated via room-state
+			// Timer completed - play completion sound
+			try {
+				const audio = new Audio('/sounds/bell-notification-337658.mp3');
+				audio.volume = 0.8;
+				audio.play().catch(err => console.warn('Could not play timer complete sound:', err));
+			} catch (e) {
+				console.warn('Sound error:', e);
+			}
 		});
 
 		// If already connected, join room
