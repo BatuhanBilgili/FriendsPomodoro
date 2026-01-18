@@ -331,7 +331,8 @@ const Room = () => {
 						{formatTime(roomState.timerRemaining)}
 					</div>
 					<div className="timer-label">
-						{isBreak ? 'Mola' : 'Odaklanma'}
+						{console.log('[TIMER LABEL] timerType:', roomState.timerType, 'isBreak:', isBreak)}
+						{roomState.timerType === 'break' ? 'Mola' : 'Odaklanma'}
 					</div>
 				</div>
 			)}
