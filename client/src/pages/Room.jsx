@@ -59,6 +59,31 @@ const Room = () => {
 		return ['break', 'break-paused'].includes(roomState.state);
 	}, [roomState?.state]);
 
+	// Track previous state to detect timer completion
+	const prevStateRef = useRef(null);
+
+	// Play sound when timer completes automatically (not when user clicks Bitir)
+	useEffect(() => {
+		if (!roomState) return;
+
+		const prevState = prevStateRef.current;
+		const currentState = roomState.state;
+
+		// Timer completed automatically: was active (working/break) and now stopped
+		if (prevState &&
+			(prevState === 'working' || prevState === 'break') &&
+			(currentState === 'stopped' || currentState === 'idle') &&
+			roomState.timerRemaining === 0) {
+			// Play completion sound ONCE
+			const audio = new Audio('/sounds/mixkit-correct-answer-tone-2870.wav');
+			audio.volume = 0.7;
+			audio.play().catch(err => console.warn('Could not play sound:', err));
+		}
+
+		// Update ref for next comparison
+		prevStateRef.current = currentState;
+	}, [roomState?.state, roomState?.timerRemaining]);
+
 	// Copy room URL with share message
 	const copyRoomUrl = () => {
 		const inviteLink = window.location.href;
