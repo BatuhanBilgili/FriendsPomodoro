@@ -102,6 +102,8 @@ class RoomManager {
 		room.timerRemaining = duration;
 		room.lastTickAt = Date.now();
 
+		console.log(`[START BREAK] Room: ${roomId}, timerType: ${room.timerType}, state: ${room.state}`);
+
 		return room;
 	}
 
