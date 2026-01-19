@@ -2,12 +2,10 @@
 
 Gerçek zamanlı, fizik tabanlı ve sosyal etkileşimli bir Pomodoro / Odaklanma uygulaması. Arkadaşlarınızla aynı odada toplanın, çalışma sürelerinizi basketbol topu arayüzüyle belirleyin ve birlikte odaklanın.
 
-## 📸 Galeri
-
-### Ekran Görüntüleri
+### 📸 Ekran Görüntüleri
 | Çalışma Modu (Turuncu) | Mola Modu (Mavi) |
 |:---:|:---:|
-| ![Çalışma Modu](<img width="1913" height="892" alt="Ekran Resmi 2026-01-19 14 20 27" src="https://github.com/user-attachments/assets/4df1aec1-92f4-4db6-9398-8757a1c6d134" />) | ![Mola Modu](<img width="1913" height="892" alt="Ekran Resmi 2026-01-19 14 20 31" src="https://github.com/user-attachments/assets/c3d86f3b-6e75-4a52-9482-fd4815bbe7b8" />) |
+| <img width="1913" height="892" alt="Ekran Resmi 2026-01-19 14 20 27" src="https://github.com/user-attachments/assets/4df1aec1-92f4-4db6-9398-8757a1c6d134" />  | <img width="1913" height="892" alt="Ekran Resmi 2026-01-19 14 20 31" src="https://github.com/user-attachments/assets/c3d86f3b-6e75-4a52-9482-fd4815bbe7b8" /> |
 
 ## ✨ Özellikler
 
@@ -92,7 +90,3 @@ Focus/
 3. Değişikliklerinizi commit edin (`git commit -m 'Add some AmazingFeature'`).
 4. Branch'inizi push edin (`git push origin feature/AmazingFeature`).
 5. Bir Pull Request oluşturun.
-
-## 📝 Lisans
-
-Bu proje MIT lisansı ile lisanslanmıştır. Detaylar için `LICENSE` dosyasına bakabilirsiniz.
