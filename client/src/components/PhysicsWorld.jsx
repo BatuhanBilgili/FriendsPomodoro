@@ -45,6 +45,14 @@ export const PhysicsWorld = ({
 	const [isReady, setIsReady] = useState(false);
 	const ballColorRef = useRef(ballColor);
 
+	// Ref to track the current onSelect handler to avoid stale closures in Matter.js events
+	const onSelectRef = useRef(onSelect);
+
+	// Update onSelect ref when prop changes
+	useEffect(() => {
+		onSelectRef.current = onSelect;
+	}, [onSelect]);
+
 	const baseTimes = type === 'work' ? WORK_TIMES : BREAK_TIMES;
 	const times = [...baseTimes, ...customTimes].filter((t, i, arr) => arr.indexOf(t) === i).sort((a, b) => a - b);
 
@@ -267,7 +275,8 @@ export const PhysicsWorld = ({
 				if (distance < focusZoneRadius + body.radius * 0.5) {
 					const duration = body.duration * 60; // Convert to seconds
 					console.log(`Selected ${body.duration} minutes`);
-					onSelect?.(duration);
+					// Use ref to call the most recent handler
+					onSelectRef.current?.(duration);
 				}
 			}
 		});
