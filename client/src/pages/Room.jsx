@@ -89,7 +89,7 @@ const Room = () => {
 	const copyRoomUrl = () => {
 		const inviteLink = window.location.href;
 		const userName = currentUser?.userName || getUserName();
-		const shareMessage = `Merhaba! Benimle "${userName}" olarak beraber çalışmak adına aşağıdaki davet linkine bekliyorum:\n\n${inviteLink}`;
+		const shareMessage = `Merhaba! beraber çalışmak adına aşağıdaki davet linkine bekliyorum:\n\n${inviteLink}`;
 
 		navigator.clipboard.writeText(shareMessage).then(() => {
 			// Show success notification
